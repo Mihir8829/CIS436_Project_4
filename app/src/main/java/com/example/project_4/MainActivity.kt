@@ -16,7 +16,8 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.getWeather.setOnClickListener{
+        binding.btnGetWeather.setOnClickListener {
+
             //val city = cityFragment.getCity()   Error: City Fragment needs to be instantiated?
         }
     }
