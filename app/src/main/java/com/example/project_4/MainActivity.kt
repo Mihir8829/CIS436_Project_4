@@ -15,12 +15,10 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        weatherFragment = WeatherFragment()
-        cityFragment = CityFragment()
 
-        binding.getWeather.setOnClickListener{
-            val city = cityFragment.getCity()
-            binding.getWeather.text = city;
+        binding.btnGetWeather.setOnClickListener {
+
+            //val city = cityFragment.getCity()   Error: City Fragment needs to be instantiated?
         }
     }
 }

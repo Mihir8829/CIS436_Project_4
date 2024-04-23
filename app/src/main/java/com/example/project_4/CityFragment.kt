@@ -21,6 +21,6 @@ class CityFragment : Fragment() {
         return binding.root
     }
     fun getCity(): String {
-        return binding.city.text.toString()
+        return binding.edCity.text.toString()
     }
 }
