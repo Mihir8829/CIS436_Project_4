@@ -38,8 +38,8 @@ class WeatherFragment : Fragment() {
     )
 
     data class Current(
-        val temp_c: Double,
-        val temp_f: Double,
+        val temp_c: Int,
+        val temp_f: Int,
         val humidity: Int,
         val condition: Condition,
         val wind_mph: Double,

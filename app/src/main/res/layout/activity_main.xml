@@ -16,13 +16,14 @@
         app:layout_constraintHorizontal_bias="0.083"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.023" />
+        app:layout_constraintVertical_bias="0.023"
+        tools:layout="@layout/fragment_city" />
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/WeatherFragmentContainer"
         android:name="com.example.project_4.WeatherFragment"
-        android:layout_width="412dp"
-        android:layout_height="660dp"
+        android:layout_width="414dp"
+        android:layout_height="630dp"
         android:layout_marginStart="1dp"
         android:layout_marginEnd="1dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -30,7 +31,8 @@
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.967" />
+        app:layout_constraintVertical_bias="0.967"
+        tools:layout="@layout/fragment_weather" />
 
     <Button
         android:id="@+id/btnGetWeather"
@@ -40,8 +42,8 @@
         android:text="Get Weather!"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.636"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toEndOf="@+id/CityFragmentContainer"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.023" />
+        app:layout_constraintVertical_bias="0.032" />
 </androidx.constraintlayout.widget.ConstraintLayout>
