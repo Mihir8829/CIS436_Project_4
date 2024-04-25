@@ -30,7 +30,7 @@ class MainActivity : AppCompatActivity(), CityFragment.CitySelectionListener {
         transaction.commit()
 
         binding.btnGetWeather.setOnClickListener {
-            val city = cityFragment.getEneteredCity()
+            val city = cityFragment.getEnteredCity()
             onCitySelected(city)
         }
     }
