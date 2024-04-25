@@ -22,7 +22,7 @@
         android:id="@+id/WeatherFragmentContainer"
         android:name="com.example.project_4.WeatherFragment"
         android:layout_width="412dp"
-        android:layout_height="620dp"
+        android:layout_height="660dp"
         android:layout_marginStart="1dp"
         android:layout_marginEnd="1dp"
         app:layout_constraintBottom_toBottomOf="parent"
