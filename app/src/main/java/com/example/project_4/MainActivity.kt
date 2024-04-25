@@ -7,7 +7,7 @@ import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
 
 class MainActivity : AppCompatActivity() {
-    private var WEATHER_API_URL = "http://api.weatherapi.com/v1"
+    private var WEATHER_API_URL = "http://api.weatherapi.com/v1/"
     private val API_KEY = "26cf1eec57b1464fb92211836242404"
     private lateinit var binding: ActivityMainBinding
     private lateinit var weatherFragment: WeatherFragment

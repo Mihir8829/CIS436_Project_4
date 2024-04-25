@@ -76,13 +76,12 @@ class WeatherFragment : Fragment() {
     private suspend fun fetchWeatherData(cityName: String): WeatherResponse {
         return withContext(Dispatchers.IO) {
             val retrofit = Retrofit.Builder()
-                .baseUrl("https://www.weatherapi.com/")
+                .baseUrl("https://api.weatherapi.com/v1/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build()
 
             val service = retrofit.create(OpenWeatherMapService::class.java)
-
-            val apiKey= "36fd6192ce2148a29c8202024242404"
+            val apiKey= "26cf1eec57b1464fb92211836242404"
             val response = service.getCurrentWeather(apiKey, cityName)
 
             if (response.isSuccessful) {
