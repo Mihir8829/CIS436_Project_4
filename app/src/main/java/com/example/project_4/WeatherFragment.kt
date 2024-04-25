@@ -118,6 +118,10 @@ class WeatherFragment : Fragment() {
         binding.tvUVIndex.text = currentWeather.uv.toString()
         binding.tvFeelsLikeTemperature.text="${currentWeather.feelslike_f}°F"
 
+        binding.tvTemperatureTommorow.text="${currentWeather.temp_f}°F"
+        binding.tvTemperatureDayAfterTommorow.text="${currentWeather.temp_f}°F"
+        binding.tvTemperatureTwoDaysAfterTommorow.text="${currentWeather.temp_f}°F"
+        
         binding.imageHumidity.setImageResource(R.drawable.humidity)
         binding.imageFeelsLikeTemperature.setImageResource(R.drawable.feelslike)
         binding.imagePrecipitation.setImageResource(R.drawable.precipitation)
@@ -128,5 +132,20 @@ class WeatherFragment : Fragment() {
         Glide.with(requireContext())
             .load(iconUrl)
             .into(binding.imageWeather)
+
+        val iconUrlTomm = "https:${currentWeather.condition.icon}"
+        Glide.with(requireContext())
+            .load(iconUrlTomm)
+            .into(binding.imageTommorowWeather)
+
+        val iconUrlAfterTomm = "https:${currentWeather.condition.icon}"
+        Glide.with(requireContext())
+            .load(iconUrlAfterTomm)
+            .into(binding.imageDayAfterTommorowWeather)
+
+        val iconUrlTwoDaysAfterTomm = "https:${currentWeather.condition.icon}"
+        Glide.with(requireContext())
+            .load(iconUrlTwoDaysAfterTomm)
+            .into(binding.imageTwoDaysAfterTommorowWeather)
     }
 }
