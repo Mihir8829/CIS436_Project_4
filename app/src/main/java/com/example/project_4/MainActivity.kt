@@ -5,8 +5,10 @@ import com.example.project_4.databinding.ActivityMainBinding
 import android.os.Bundle
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
+import androidx.lifecycle.lifecycleScope
+import kotlinx.coroutines.launch
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), CityFragment.CitySelectionListener {
     private var WEATHER_API_URL = "http://api.weatherapi.com/v1/"
     private val API_KEY = "26cf1eec57b1464fb92211836242404"
     private lateinit var binding: ActivityMainBinding
@@ -28,8 +30,14 @@ class MainActivity : AppCompatActivity() {
         transaction.commit()
 
         binding.btnGetWeather.setOnClickListener {
-            val city = cityFragment.getCity()
-
+            val city = cityFragment.getEneteredCity()
+            onCitySelected(city)
         }
+    }
+    override fun onCitySelected(city: String) {
+        lifecycleScope.launch {
+            weatherFragment.fetchWeatherData(city)
+        }
+
     }
 }

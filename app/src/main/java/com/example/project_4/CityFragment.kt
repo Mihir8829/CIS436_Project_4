@@ -8,10 +8,13 @@ import com.example.project_4.databinding.FragmentCityBinding
 
 
 class CityFragment : Fragment() {
-    private lateinit var binding: FragmentCityBinding
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+
+    interface CitySelectionListener {
+        fun onCitySelected(city: String)
     }
+
+    private lateinit var binding: FragmentCityBinding
+    private var citySelectionListener: CitySelectionListener? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -20,7 +23,11 @@ class CityFragment : Fragment() {
         binding = FragmentCityBinding.inflate(inflater, container, false)
         return binding.root
     }
-    fun getCity(): String {
+
+    fun getEneteredCity(): String {
         return binding.edCity.text.toString()
+    }
+    fun setCitySelectionListener(listener: CitySelectionListener) {
+        citySelectionListener = listener
     }
 }

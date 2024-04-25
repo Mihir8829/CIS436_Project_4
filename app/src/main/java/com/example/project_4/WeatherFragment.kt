@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.util.Log
 import android.widget.ImageView
 import android.widget.TextView
 import com.example.project_4.databinding.FragmentWeatherBinding
@@ -52,7 +53,7 @@ class WeatherFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentWeatherBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -61,7 +62,13 @@ class WeatherFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
        lifecycleScope.launch {
-           val weatherResponse = fetchWeatherData("Detroit")
+           try {
+               val weatherResponse = fetchWeatherData("Detroit")
+               updateUI(weatherResponse)
+           } catch (e: Exception) {
+
+               Log.e("WeatherFragment", "Error fetching weather data: ${e.message}")
+           }
        }
     }
 
@@ -73,7 +80,8 @@ class WeatherFragment : Fragment() {
         ): Response<WeatherResponse>
     }
 
-    private suspend fun fetchWeatherData(cityName: String): WeatherResponse {
+
+    public suspend fun fetchWeatherData(cityName: String): WeatherResponse {
         return withContext(Dispatchers.IO) {
             val retrofit = Retrofit.Builder()
                 .baseUrl("https://api.weatherapi.com/v1/")
@@ -91,5 +99,16 @@ class WeatherFragment : Fragment() {
                 throw IllegalStateException("Failed to fetch weather data: ${response.errorBody()}")
             }
         }
+    }
+
+    private fun updateUI(weatherResponse: WeatherResponse) {
+        val currentWeather = weatherResponse.current
+
+        binding.tvCityName.text = weatherResponse.location.name
+        binding.tvDailySummary.text = currentWeather.condition.text
+        binding.tvTemperatureToday.text = "${currentWeather.temp_f}°F"
+        binding.tvWindSpeed.text = "${currentWeather.wind_mph} mph"
+        binding.tvHumidity.text = "${currentWeather.humidity}%"
+        binding.tvUVIndex.text = currentWeather.uv.toString()
     }
 }
