@@ -24,7 +24,7 @@ class CityFragment : Fragment() {
         return binding.root
     }
 
-    fun getEneteredCity(): String {
+    fun getEnteredCity(): String {
         return binding.edCity.text.toString()
     }
     fun setCitySelectionListener(listener: CitySelectionListener) {
