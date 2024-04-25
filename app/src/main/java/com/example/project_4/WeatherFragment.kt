@@ -27,19 +27,27 @@ class WeatherFragment : Fragment() {
         }
 
     data class WeatherResponse(
-        val main: Main,
-        val weather: List<Weather>
+        val location: Location,
+        val current: Current
     )
 
-    data class Main(
-        val temp: Double,
-        val humidity: Int
+    data class Location(
+        val name: String,
+        val country: String
     )
 
-    data class Weather(
-        val description: String
+    data class Current(
+        val temp_c: Double,
+        val temp_f: Double,
+        val humidity: Int,
+        val condition: Condition,
+        val wind_mph: Double,
+        val uv: Double,
     )
-
+    
+    data class Condition(
+        val text: String
+    )
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -58,24 +66,24 @@ class WeatherFragment : Fragment() {
     }
 
     interface OpenWeatherMapService {
-        @GET("data/2.5/weather")
+        @GET("current.json")
         suspend fun getCurrentWeather(
-            @Query("q") cityName: String,
-            @Query("appid") apiKey: String,
+            @Query("key") apiKey: String,
+            @Query("q") query: String,
         ): Response<WeatherResponse>
     }
 
     private suspend fun fetchWeatherData(cityName: String): WeatherResponse {
         return withContext(Dispatchers.IO) {
             val retrofit = Retrofit.Builder()
-                .baseUrl("https://api.openweathermap.org/")
+                .baseUrl("https://www.weatherapi.com/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build()
 
             val service = retrofit.create(OpenWeatherMapService::class.java)
 
-            val apiKey= ""
-            val response = service.getCurrentWeather(cityName, apiKey)
+            val apiKey= "36fd6192ce2148a29c8202024242404"
+            val response = service.getCurrentWeather(apiKey, cityName)
 
             if (response.isSuccessful) {
                 response.body() ?: throw IllegalStateException("Weather Response Body is Null")
