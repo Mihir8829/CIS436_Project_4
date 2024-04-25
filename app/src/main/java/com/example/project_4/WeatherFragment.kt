@@ -20,6 +20,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import kotlinx.coroutines.launch
 import androidx.lifecycle.lifecycleScope
+import com.bumptech.glide.Glide
 
 class WeatherFragment : Fragment() {
     private lateinit var binding: FragmentWeatherBinding
@@ -38,8 +39,8 @@ class WeatherFragment : Fragment() {
     )
 
     data class Current(
-        val temp_c: Int,
-        val temp_f: Int,
+        val temp_c: Double,
+        val temp_f: Double,
         val humidity: Int,
         val condition: Condition,
         val wind_mph: Double,
@@ -47,7 +48,8 @@ class WeatherFragment : Fragment() {
     )
     
     data class Condition(
-        val text: String
+        val text: String,
+        val icon: String
     )
 
     override fun onCreateView(
@@ -110,5 +112,10 @@ class WeatherFragment : Fragment() {
         binding.tvWindSpeed.text = "${currentWeather.wind_mph} mph"
         binding.tvHumidity.text = "${currentWeather.humidity}%"
         binding.tvUVIndex.text = currentWeather.uv.toString()
+
+        val iconUrl = "https:${currentWeather.condition.icon}"
+        Glide.with(requireContext())
+            .load(iconUrl)
+            .into(binding.imageWeather)
     }
 }

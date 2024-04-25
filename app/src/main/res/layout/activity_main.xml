@@ -22,15 +22,14 @@
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/WeatherFragmentContainer"
         android:name="com.example.project_4.WeatherFragment"
-        android:layout_width="414dp"
-        android:layout_height="630dp"
-        android:layout_marginStart="1dp"
+        android:layout_width="411dp"
+        android:layout_height="658dp"
         android:layout_marginEnd="1dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/CityFragmentContainer"
         app:layout_constraintVertical_bias="0.967"
         tools:layout="@layout/fragment_weather" />
 
