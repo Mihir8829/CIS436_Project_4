@@ -35,7 +35,8 @@ class WeatherFragment : Fragment() {
 
     data class Location(
         val name: String,
-        val country: String
+        val country: String,
+        val localtime: String
     )
 
     data class Current(
@@ -45,6 +46,7 @@ class WeatherFragment : Fragment() {
         val condition: Condition,
         val wind_mph: Double,
         val uv: Double,
+        val feelslike_f: Double,
     )
     
     data class Condition(
@@ -106,12 +108,21 @@ class WeatherFragment : Fragment() {
     private fun updateUI(weatherResponse: WeatherResponse) {
         val currentWeather = weatherResponse.current
 
+        binding.tvCurrentDate.text = weatherResponse.location.localtime.substring(0, weatherResponse.location.localtime.length - 6)
+
         binding.tvCityName.text = weatherResponse.location.name
         binding.tvDailySummary.text = currentWeather.condition.text
         binding.tvTemperatureToday.text = "${currentWeather.temp_f}°F"
         binding.tvWindSpeed.text = "${currentWeather.wind_mph} mph"
         binding.tvHumidity.text = "${currentWeather.humidity}%"
         binding.tvUVIndex.text = currentWeather.uv.toString()
+        binding.tvFeelsLikeTemperature.text="${currentWeather.feelslike_f}°F"
+
+        binding.imageHumidity.setImageResource(R.drawable.humidity)
+        binding.imageFeelsLikeTemperature.setImageResource(R.drawable.feelslike)
+        binding.imagePrecipitation.setImageResource(R.drawable.precipitation)
+        binding.imageUVIndex.setImageResource(R.drawable.uvindex)
+        binding.imageWindSpeed.setImageResource(R.drawable.wind)
 
         val iconUrl = "https:${currentWeather.condition.icon}"
         Glide.with(requireContext())
