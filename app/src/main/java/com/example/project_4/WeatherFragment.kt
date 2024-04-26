@@ -113,6 +113,10 @@ class WeatherFragment : Fragment() {
         val currentWeather = weatherResponse.current
 
         binding.tvCurrentDate.text = weatherResponse.location.localtime.substring(0, weatherResponse.location.localtime.length - 6)
+        binding.tvTommorow.text = weatherResponse.location.localtime.substring(0, weatherResponse.location.localtime.length - 6)
+        binding.tvDayAfterTommorow.text = weatherResponse.location.localtime.substring(0, weatherResponse.location.localtime.length - 6)
+        binding.tvTwoDaysAfterTommorow.text = weatherResponse.location.localtime.substring(0, weatherResponse.location.localtime.length - 6)
+
 
         binding.tvCityName.text = weatherResponse.location.name
         binding.tvDailySummary.text = currentWeather.condition.text
