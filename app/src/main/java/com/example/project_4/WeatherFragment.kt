@@ -121,7 +121,7 @@ class WeatherFragment : Fragment() {
         binding.tvTemperatureTommorow.text="${currentWeather.temp_f}°F"
         binding.tvTemperatureDayAfterTommorow.text="${currentWeather.temp_f}°F"
         binding.tvTemperatureTwoDaysAfterTommorow.text="${currentWeather.temp_f}°F"
-        
+
         binding.imageHumidity.setImageResource(R.drawable.humidity)
         binding.imageFeelsLikeTemperature.setImageResource(R.drawable.feelslike)
         binding.imagePrecipitation.setImageResource(R.drawable.precipitation)
