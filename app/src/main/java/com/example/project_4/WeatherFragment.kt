@@ -1,5 +1,6 @@
 package com.example.project_4
 
+import android.os.Build
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -8,6 +9,7 @@ import android.view.ViewGroup
 import android.util.Log
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.annotation.RequiresApi
 import com.example.project_4.databinding.FragmentWeatherBinding
 import retrofit2.Retrofit
 import retrofit2.Call
@@ -21,6 +23,7 @@ import kotlinx.coroutines.withContext
 import kotlinx.coroutines.launch
 import androidx.lifecycle.lifecycleScope
 import com.bumptech.glide.Glide
+
 
 class WeatherFragment : Fragment() {
     private lateinit var binding: FragmentWeatherBinding
@@ -47,6 +50,7 @@ class WeatherFragment : Fragment() {
         val wind_mph: Double,
         val uv: Double,
         val feelslike_f: Double,
+        val precip_in: Double
     )
     
     data class Condition(
@@ -117,6 +121,7 @@ class WeatherFragment : Fragment() {
         binding.tvHumidity.text = "${currentWeather.humidity}%"
         binding.tvUVIndex.text = currentWeather.uv.toString()
         binding.tvFeelsLikeTemperature.text="${currentWeather.feelslike_f}°F"
+        binding.tvPrecipitation.text="${currentWeather.precip_in} in"
 
         binding.tvTemperatureTommorow.text="${currentWeather.temp_f}°F"
         binding.tvTemperatureDayAfterTommorow.text="${currentWeather.temp_f}°F"
@@ -148,4 +153,6 @@ class WeatherFragment : Fragment() {
             .load(iconUrlTwoDaysAfterTomm)
             .into(binding.imageTwoDaysAfterTommorowWeather)
     }
+
+
 }
